@@ -3,7 +3,7 @@ Search for terms in another file
 
 #Usage
 
-    # search.py
+    # file.txt
     lots of text but find me there
     not here
     but >there<
