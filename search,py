@@ -1,0 +1,30 @@
+import pipes
+import sys
+
+
+def args_check():
+    if len(sys.argv) <= 2:
+        raise Exception("Missing either file name. Please pass the two file name as arguments.")
+
+try:
+    args_check()
+
+    t_search = pipes.Template()
+    f_search = t_search.open(sys.argv[2], 'r')
+
+    for search_term in f_search:
+        t_origin = pipes.Template()
+        f_origin = t_origin.open(sys.argv[1], 'r')
+
+        l = []
+        strip_term = search_term.strip()
+        for line in f_origin:
+            if strip_term in line:
+                l.append(line)
+        if len(l) > 0:
+            print 'Found some lines containing:', strip_term
+            for i in l:
+                print i
+
+except Exception as err:
+    print 'Error!!', err
